@@ -1,5 +1,7 @@
 package com.company;
 
+import com.sun.jdi.IntegerValue;
+
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -11,30 +13,32 @@ public class Joueur {
 	}
 
 
-    private int[][] grille = new int[10][10];
+    private String[][] grille = new String[10][10];
 
     public Joueur() {
     }
 
     public int lignebateau() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Veuillez saisir une ligne :");
-        int str = sc.nextInt();
+        System.out.print("Veuillez saisir une ligne :");
+        String str = sc.next();
+        int result = Integer.valueOf(str);
         System.out.println("Vous avez saisi : " + str);
-        return str;
+        return result;
     }
 
     public int colonebateau() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Veuillez saisir une colone :");
-        int str = sc.nextInt();
+        System.out.print("Veuillez saisir une colone :");
+        String str = sc.next();
+        int result = Integer.valueOf(str);
         System.out.println("Vous avez saisi : " + str);
-        return str;
+        return result;
     }
 
     public boolean orienterbateau() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("il est horizontal ? true/false :");
+        System.out.print("il est horizontal ? true/false :");
         String str2 = sc.next();
         System.out.println("Vous avez saisi : " + str2);
         boolean bool = false;
@@ -48,13 +52,14 @@ public class Joueur {
     public void montrergrille() {
         System.out.print("  0 1 2 3 4 5 6 7 8 9\n");
 
-        for(int i = 0; i < this.grille.length; ++i) {
+        for(int i = 0; i < grille.length; ++i) {
             System.out.print(i + " ");
-
-            for(int j = 0; j < this.grille[i].length; ++j) {
-                System.out.print(this.grille[i][j] + " ");
+            for(int j = 0; j < grille[i].length; ++j) {
+                if (grille[i][j] == null)
+                    System.out.print("~ ");
+                else
+                    System.out.print(grille[i][j] + " ");
             }
-
             System.out.println();
         }
 
@@ -63,25 +68,27 @@ public class Joueur {
     public void ajouterbateau(Bateau b) {
         if (!this.bateaux.contains(b)) {
             this.bateaux.add(b);
-
-            while(b.getX() + b.getTaille() > 10 || b.getX() < 0) {
-                System.out.print("Position ligne incorect\n");
+            if (b.getX() + b.getTaille() > 10 || b.getX() < 0) {
+                System.out.print("Position ligne incorrect\n");
+            }
+            else
                 b.setX(this.lignebateau());
-            }
 
-            while(b.getY() + b.getTaille() > 10 || b.getY() < 0) {
-                System.out.print("Position colone incorect\n");
-                b.setY(this.colonebateau());
+
+            if (b.getY() + b.getTaille() > 10 || b.getY() < 0) {
+                System.out.print("Position colonne incorrect\n");
             }
+            else
+                b.setY(this.colonebateau());
 
             int i;
             if (b.getOrientation()) {
                 for(i = 0; i < b.getTaille(); ++i) {
-                    this.grille[b.getX()][b.getY() + i] = b.getNb();
+                    grille[b.getX()][b.getY() + i] = b.getInit();
                 }
             } else {
                 for(i = 0; i < b.getTaille(); ++i) {
-                    this.grille[b.getX() + i][b.getY()] = b.getNb();
+                    grille[b.getX() + i][b.getY()] = b.getInit();
                 }
             }
         }

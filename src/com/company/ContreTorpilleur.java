@@ -2,7 +2,7 @@ package com.company;
 
 public class ContreTorpilleur extends Bateau {
     public ContreTorpilleur(int x, int y, boolean h) {
-        super(x, y, h, 3, 2, h);
+        super(x, y, h, 3, 2, "B");
     }
 
     public String toString() {

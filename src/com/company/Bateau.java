@@ -9,12 +9,16 @@ public class Bateau {
     private int posY;
     private int longueur;
     protected int nb;
+    private String initial ;
 
-    public Bateau(int x, int y, boolean h, int taille, int p, boolean th) {
+    public Bateau(int x, int y, boolean h, int taille, int p, String init) {
         this.horizontal = h;
         this.portee = p;
-        this.tirHorizontal = th;
+        //this.tirHorizontal = th;
         this.element = new Element[taille];
+        this.initial = init ;
+        this.posX = x ;
+        this.posY = y ;
         int i;
         if (this.horizontal) {
             for (i = 0; i < taille; ++i) {
@@ -71,8 +75,8 @@ public class Bateau {
         return this.posY;
     }
 
-    public int getNb() {
-        return this.nb;
+    public String getInit() {
+        return this.initial;
     }
 
     public boolean getOrientation() {
