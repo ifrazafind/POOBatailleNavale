@@ -61,10 +61,11 @@ public class Element {
 
     public String toString() {
         String s = "";
+        s="["+this.abcisse+"/"+this.ordonnee+"]";
         if (!this.detruit) {
-            s = "O";
+            s += "O";
         } else if (this.detruit) {
-            s = "X";
+            s += "X";
         }
 
         return s;

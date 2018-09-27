@@ -13,13 +13,13 @@ public class Bateau {
         this.portee = p;
         this.element = new Element[taille];
         this.initial = init ;
-        int i;
+       
         if (this.horizontal) {
-            for (i = 0; i < taille; ++i) {
+            for (int i = 0; i < taille; ++i) {
                 this.element[i] = new Element(x + i, y);
             }
         } else {
-            for (i = 0; i < taille; ++i) {
+            for (int i = 0; i < taille; ++i) {
                 this.element[i] = new Element(x, y + i);
             }
         }
@@ -64,11 +64,11 @@ public class Bateau {
 
 
     public int getX() {
-        return this.element[0].getabcisse();
+        return this.element[0].getordonnee();
     }
 
     public int getY() {
-        return this.element[0].getordonnee();
+        return this.element[0].getabcisse();
     }
 
     public String getInit() {
@@ -84,10 +84,29 @@ public class Bateau {
     }
 
     public void setX(int newX) {
-        this.element[0].setAbcisse(newX);
+        //this.element[0].setAbcisse(newX);
+        if (this.horizontal) {
+            for (int i = 0; i < this.element.length; ++i) {
+                this.element[i].setOrdonnee(newX);
+            }
+        } else {
+            for (int i = 0; i < this.element.length; ++i) {
+                this.element[i].setOrdonnee(newX+i);
+            }
+        }
+        
     }
 
     public void setY(int newY) {
-        this.element[0].setOrdonnee(newY);
+        //this.element[0].setOrdonnee(newY);
+        if (this.horizontal) {
+            for (int i = 0; i < this.element.length; ++i) {
+                this.element[i].setAbcisse(newY+i);
+            }
+        } else {
+            for (int i = 0; i < this.element.length; ++i) {
+                this.element[i].setAbcisse(newY);
+            }
+        }
     }
 }

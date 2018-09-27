@@ -24,7 +24,7 @@ public class Game {
             PorteAvion p = new PorteAvion(tableauJoueur[i].lignebateau(), tableauJoueur[i].colonebateau(), tableauJoueur[i].orienterbateau());
             tableauJoueur[i].ajouterbateau(p);
             tableauJoueur[i].montrergrille();
-
+/*
             System.out.print("Placer Croiseur\n");
             Croiseur c = new Croiseur(tableauJoueur[i].lignebateau(), tableauJoueur[i].colonebateau(), tableauJoueur[i].orienterbateau());
             tableauJoueur[i].ajouterbateau(c);
@@ -45,6 +45,7 @@ public class Game {
             tableauJoueur[i].ajouterbateau(t);
             tableauJoueur[i].montrergrille();*/
 
+           
 
             System.out.flush();
 
@@ -52,7 +53,7 @@ public class Game {
             System.out.print("X : ");
             Scanner sc = new Scanner(System.in) ;
             int x = sc.nextInt();
-            System.out.print("X : ");
+            System.out.print("Y : ");
             int y = sc.nextInt();
             tableauJoueur[i].tir(y,x,tableauJoueur[i]);
             System.out.println(tableauJoueur[i]);

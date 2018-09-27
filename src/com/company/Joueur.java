@@ -21,7 +21,7 @@ public class Joueur {
         Scanner sc = new Scanner(System.in);
         System.out.print("Veuillez saisir une ligne :");
         String str = sc.next();
-        int result = Integer.valueOf(str);
+        int result = Integer.parseInt(str);
         System.out.println("Vous avez saisi : " + str);
         return result;
     }
@@ -30,7 +30,7 @@ public class Joueur {
         Scanner sc = new Scanner(System.in);
         System.out.print("Veuillez saisir une colone :");
         String str = sc.next();
-        int result = Integer.valueOf(str);
+        int result = Integer.parseInt(str);
         System.out.println("Vous avez saisi : " + str);
         return result;
     }
@@ -64,7 +64,7 @@ public class Joueur {
 
     }
 
-    //en fonction de l'orientation on ajoute ou non le get taille
+   
     public void ajouterbateau(Bateau b) {
         if (!this.bateaux.contains(b)) {
             while (b.getX() + b.getTaille()*(b.getOrientation() ? 0 : 1) > 10 || b.getX() < 0) {
@@ -82,7 +82,7 @@ public class Joueur {
             int i;
             if (b.getOrientation()== false) {
                 for(i = 0; i < b.getTaille(); ++i) {
-                    if (grille[b.getX() + i][b.getY()] == null)
+                    if (grille[b.getX() + i][b.getY()] == null && test)
                         test = true;
                     else {
                         test = false ;
@@ -97,6 +97,7 @@ public class Joueur {
                     System.out.println("place occupée");
                     b.setX(this.lignebateau());
                     b.setY(this.colonebateau());
+                    ajouterbateau(b);
                 }
             } else {
                 for(i = 0; i < b.getTaille(); ++i) {
@@ -115,6 +116,7 @@ public class Joueur {
                         System.out.println("place occupée");
                         b.setX(this.lignebateau());
                         b.setY(this.colonebateau());
+                        ajouterbateau(b);
                 }
             }
             this.bateaux.add(b);
