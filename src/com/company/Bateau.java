@@ -5,6 +5,10 @@ public class Bateau {
     private boolean tirHorizontal;
     private Element[] element;
     private int portee;
+    private int posX;
+    private int posY;
+    private int longueur;
+    protected int nb;
 
     public Bateau(int x, int y, boolean h, int taille, int p, boolean th) {
         this.horizontal = h;
@@ -56,5 +60,34 @@ public class Bateau {
         }
 
         return s;
+    }
+
+
+    public int getX() {
+        return this.posX;
+    }
+
+    public int getY() {
+        return this.posY;
+    }
+
+    public int getNb() {
+        return this.nb;
+    }
+
+    public boolean getOrientation() {
+        return this.horizontal;
+    }
+
+    public int getTaille() {
+        return this.longueur;
+    }
+
+    public void setX(int newX) {
+        this.posX = newX;
+    }
+
+    public void setY(int newY) {
+        this.posY = newY;
     }
 }

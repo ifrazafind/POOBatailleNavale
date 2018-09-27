@@ -63,10 +63,30 @@ public class Joueur {
     public void ajouterbateau(Bateau b) {
         if (!this.bateaux.contains(b)) {
             this.bateaux.add(b);
+
+            while(b.getX() + b.getTaille() > 10 || b.getX() < 0) {
+                System.out.print("Position ligne incorect\n");
+                b.setX(this.lignebateau());
+            }
+
+            while(b.getY() + b.getTaille() > 10 || b.getY() < 0) {
+                System.out.print("Position colone incorect\n");
+                b.setY(this.colonebateau());
+            }
+
+            int i;
+            if (b.getOrientation()) {
+                for(i = 0; i < b.getTaille(); ++i) {
+                    this.grille[b.getX()][b.getY() + i] = b.getNb();
+                }
+            } else {
+                for(i = 0; i < b.getTaille(); ++i) {
+                    this.grille[b.getX() + i][b.getY()] = b.getNb();
+                }
+            }
         }
 
     }
-
     public void enleverbateau(Bateau b) {
         if (this.bateaux.contains(b)) {
             this.bateaux.remove(b);
