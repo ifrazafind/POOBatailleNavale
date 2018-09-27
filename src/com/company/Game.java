@@ -1,11 +1,12 @@
 package com.company;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 
 public class Game {
 	
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
 
         Joueur joueur1 = new Joueur();
        // Joueur joueur2 = new Joueur();

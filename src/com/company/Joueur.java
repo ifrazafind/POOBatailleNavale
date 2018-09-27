@@ -68,7 +68,7 @@ public class Joueur {
     public void ajouterbateau(Bateau b) {
         if (!this.bateaux.contains(b)) {
             while (b.getX() + b.getTaille() > 10 || b.getX() < 0) {
-                System.out.print("Position ligne incorrect\n");
+                System.out.println("Position ligne incorrect\n");
                 b.setX(this.lignebateau());
             }
 
@@ -77,27 +77,44 @@ public class Joueur {
                 System.out.print("Position colonne incorect\n");
                 b.setY(this.colonebateau());
             }
+            boolean test = true ;
 
             int i;
-            if (b.getOrientation()== true) {
+            if (b.getOrientation()== false) {
                 for(i = 0; i < b.getTaille(); ++i) {
-                    if ((grille[i][i] ==null)&& (grille[i][i] ==null))
-                        grille[b.getX()][b.getY() + i] = b.getInit() ;
+                    if (grille[b.getX() + i][b.getY()] == null)
+                        test = true;
                     else {
-                        System.out.print("place occupée");
-                        b.setX(this.lignebateau());
-                        b.setY(this.colonebateau());
+                        test = false ;
                     }
+                }
+                if (test == true) {
+                    for (i = 0; i < b.getTaille(); ++i) {
+                        grille[b.getX() + i][b.getY()] = b.getInit();
+                    }
+                }
+                else {
+                    System.out.println("place occupée");
+                    b.setX(this.lignebateau());
+                    b.setY(this.colonebateau());
                 }
             } else {
                 for(i = 0; i < b.getTaille(); ++i) {
-                    if ((grille[i][i] ==null)&& (grille[i][i] ==null))
-                        grille[b.getX() + i][b.getY()] = b.getInit() ;
+                    if (grille[b.getX()][b.getY() + i] == null)
+                        test = true;
                     else {
-                        System.out.print("place occupée");
+                        test = false ;
+                    }
+                }
+                if (test == true) {
+                    for (i = 0; i < b.getTaille(); ++i) {
+                        grille[b.getX()][b.getY() + i] = b.getInit();
+                    }
+                }
+                else {
+                        System.out.println("place occupée");
                         b.setX(this.lignebateau());
                         b.setY(this.colonebateau());
-                    }
                 }
             }
             this.bateaux.add(b);
