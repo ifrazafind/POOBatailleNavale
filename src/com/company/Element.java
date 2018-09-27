@@ -52,9 +52,9 @@ public class Element {
     public String toString() {
         String s = "";
         if (!this.detruit) {
-            s = "o";
+            s = "O";
         } else if (this.detruit) {
-            s = "x";
+            s = "X";
         }
 
         return s;

@@ -1,6 +1,7 @@
 package com.company;
 
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 
@@ -17,7 +18,7 @@ public class Game {
 
             System.out.print("Joueur 1\n");
 
-            joueur1.montrergrille();
+            tableauJoueur[i].montrergrille();
 
             System.out.print("Placer PorteAvion\n");
             PorteAvion p = new PorteAvion(tableauJoueur[i].lignebateau(), tableauJoueur[i].colonebateau(), tableauJoueur[i].orienterbateau());
@@ -32,9 +33,9 @@ public class Game {
             /*System.out.print("Placer ContreTorpilleur\n");
             ContreTorpilleur ct = new ContreTorpilleur(tableauJoueur[i].lignebateau(), tableauJoueur[i].colonebateau(), tableauJoueur[i].orienterbateau());
             tableauJoueur[i].ajouterbateau(ct);
-            tableauJoueur[i].montrergrille();
+            tableauJoueur[i].montrergrille();*/
 
-            System.out.print("Placer SousMarin\n");
+            /*System.out.print("Placer SousMarin\n");
             SousMarin s = new SousMarin(tableauJoueur[i].lignebateau(), tableauJoueur[i].colonebateau(), tableauJoueur[i].orienterbateau());
             tableauJoueur[i].ajouterbateau(s);
             tableauJoueur[i].montrergrille();
@@ -45,6 +46,16 @@ public class Game {
             tableauJoueur[i].montrergrille();*/
 
 
+            System.out.flush();
+
+            System.out.println("Entrer les coordonnees de tirs");
+            System.out.print("X : ");
+            Scanner sc = new Scanner(System.in) ;
+            int x = sc.nextInt();
+            System.out.print("X : ");
+            int y = sc.nextInt();
+            tableauJoueur[i].tir(y,x,tableauJoueur[i]);
+            System.out.println(tableauJoueur[i]);
             TimeUnit.SECONDS.sleep(2);
 
         /*J1.tir(2,3,J2);
