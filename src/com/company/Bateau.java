@@ -38,12 +38,14 @@ public class Bateau {
     }
 
     public boolean estdetruit() {
-        boolean res = true;
-
-        for (int i = 0; i < this.element.length && res; ++i) {
-            res = res && this.element[i].isDetruit();
+        int vie=2;
+        for (int i = 0; i < this.element.length && vie>0; ++i) {
+            if(this.element[i].isDetruit())
+            	vie-=1;
         }
-        return res;
+        if(vie==0)
+        	return true;
+        return false;
     }
 
     public String toString() {    	
