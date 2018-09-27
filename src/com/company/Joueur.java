@@ -67,13 +67,13 @@ public class Joueur {
     //en fonction de l'orientation on ajoute ou non le get taille
     public void ajouterbateau(Bateau b) {
         if (!this.bateaux.contains(b)) {
-            while (b.getX() + b.getTaille() > 10 || b.getX() < 0) {
+            while (b.getX() + b.getTaille()*(b.getOrientation() ? 0 : 1) > 10 || b.getX() < 0) {
                 System.out.println("Position ligne incorrect\n");
                 b.setX(this.lignebateau());
             }
 
 
-            while(b.getY() + b.getTaille() > 10 || b.getY() < 0) {
+            while(b.getY() + b.getTaille()*(b.getOrientation() ? 1 : 0) > 10 || b.getY() < 0) {
                 System.out.print("Position colonne incorect\n");
                 b.setY(this.colonebateau());
             }
