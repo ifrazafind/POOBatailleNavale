@@ -4,7 +4,9 @@ import jdk.jfr.Unsigned;
 
 public class Element {
     private int abcisse;
-    private int ordonnee;
+
+
+	private int ordonnee;
     private boolean detruit;
 
     public Element(int i, int j) {
@@ -20,6 +22,14 @@ public class Element {
     public int getordonnee() {
         return this.ordonnee;
     }
+    
+    public void setAbcisse(int abcisse) {
+		this.abcisse = abcisse;
+	}
+
+	public void setOrdonnee(int ordonnee) {
+		this.ordonnee = ordonnee;
+	}
 
     public void touche(int i, int j) {
         if (this.abcisse == i && this.ordonnee == j && !this.detruit) {

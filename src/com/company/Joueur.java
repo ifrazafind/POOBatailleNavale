@@ -1,6 +1,5 @@
 package com.company;
 
-import com.sun.jdi.IntegerValue;
 
 import java.util.Scanner;
 import java.util.Vector;
@@ -65,6 +64,7 @@ public class Joueur {
 
     }
 
+    //en fonction de l'orientation on ajoute ou non le get taille
     public void ajouterbateau(Bateau b) {
         if (!this.bateaux.contains(b)) {
             while (b.getX() + b.getTaille() > 10 || b.getX() < 0) {
