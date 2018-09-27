@@ -10,25 +10,25 @@ public class Game {
         Joueur joueur1 = new Joueur();
        // Joueur joueur2 = new Joueur();
 
-        //Joueur tableauJoueur[] = {joueur1};
+        Joueur tableauJoueur[] = {joueur1};
 
-        //for (int i = 0; i<tableauJoueur.length;i++) {
+        for (int i = 0; i<tableauJoueur.length;i++) {
 
-        System.out.print("Joueur 1\n");
+            System.out.print("Joueur 1\n");
 
-        joueur1.montrergrille();
-
-            System.out.print("Placer PorteAvion\n");
-            PorteAvion p = new PorteAvion(joueur1.lignebateau(), joueur1.colonebateau(), joueur1.orienterbateau());
-            joueur1.ajouterbateau(p);
             joueur1.montrergrille();
 
-            /*System.out.print("Placer Croiseur\n");
+            System.out.print("Placer PorteAvion\n");
+            PorteAvion p = new PorteAvion(tableauJoueur[i].lignebateau(), tableauJoueur[i].colonebateau(), tableauJoueur[i].orienterbateau());
+            tableauJoueur[i].ajouterbateau(p);
+            tableauJoueur[i].montrergrille();
+
+            System.out.print("Placer Croiseur\n");
             Croiseur c = new Croiseur(tableauJoueur[i].lignebateau(), tableauJoueur[i].colonebateau(), tableauJoueur[i].orienterbateau());
             tableauJoueur[i].ajouterbateau(c);
             tableauJoueur[i].montrergrille();
 
-            System.out.print("Placer ContreTorpilleur\n");
+            /*System.out.print("Placer ContreTorpilleur\n");
             ContreTorpilleur ct = new ContreTorpilleur(tableauJoueur[i].lignebateau(), tableauJoueur[i].colonebateau(), tableauJoueur[i].orienterbateau());
             tableauJoueur[i].ajouterbateau(ct);
             tableauJoueur[i].montrergrille();
@@ -53,6 +53,6 @@ public class Game {
         System.out.println(J1);*/
 
 
-            //J1.getBateaux().el
+        }  //J1.getBateaux().el
     }
 }

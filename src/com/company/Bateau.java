@@ -14,7 +14,7 @@ public class Bateau {
     public Bateau(int x, int y, boolean h, int taille, int p, String init) {
         this.horizontal = h;
         this.portee = p;
-        //this.tirHorizontal = th;
+        this.longueur = taille ;
         this.element = new Element[taille];
         this.initial = init ;
         this.posX = x ;

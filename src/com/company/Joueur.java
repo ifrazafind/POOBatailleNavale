@@ -13,7 +13,7 @@ public class Joueur {
 	}
 
 
-    private String[][] grille = new String[10][10];
+    public String[][] grille = new String[10][10];
 
     public Joueur() {
     }
@@ -67,30 +67,40 @@ public class Joueur {
 
     public void ajouterbateau(Bateau b) {
         if (!this.bateaux.contains(b)) {
-            this.bateaux.add(b);
-            if (b.getX() + b.getTaille() > 10 || b.getX() < 0) {
+            while (b.getX() + b.getTaille() > 10 || b.getX() < 0) {
                 System.out.print("Position ligne incorrect\n");
-            }
-            else
                 b.setX(this.lignebateau());
-
-
-            if (b.getY() + b.getTaille() > 10 || b.getY() < 0) {
-                System.out.print("Position colonne incorrect\n");
             }
-            else
+
+
+            while(b.getY() + b.getTaille() > 10 || b.getY() < 0) {
+                System.out.print("Position colonne incorect\n");
                 b.setY(this.colonebateau());
+            }
 
             int i;
-            if (b.getOrientation()) {
+            if (b.getOrientation()== true) {
                 for(i = 0; i < b.getTaille(); ++i) {
-                    grille[b.getX()][b.getY() + i] = b.getInit();
+                    if ((grille[i][i] ==null)&& (grille[i][i] ==null))
+                        grille[b.getX()][b.getY() + i] = b.getInit() ;
+                    else {
+                        System.out.print("place occupée");
+                        b.setX(this.lignebateau());
+                        b.setY(this.colonebateau());
+                    }
                 }
             } else {
                 for(i = 0; i < b.getTaille(); ++i) {
-                    grille[b.getX() + i][b.getY()] = b.getInit();
+                    if ((grille[i][i] ==null)&& (grille[i][i] ==null))
+                        grille[b.getX() + i][b.getY()] = b.getInit() ;
+                    else {
+                        System.out.print("place occupée");
+                        b.setX(this.lignebateau());
+                        b.setY(this.colonebateau());
+                    }
                 }
             }
+            this.bateaux.add(b);
         }
 
     }
