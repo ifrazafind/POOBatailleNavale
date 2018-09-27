@@ -3,9 +3,13 @@ package com.company;
 import java.util.Vector;
 
 public class Joueur {
-    private Vector bateaux = new Vector();
+    private Vector<Bateau> bateaux = new Vector<>();
 
-    public Joueur() {
+	public Vector<Bateau> getBateaux() {
+		return bateaux;
+	}
+
+	public Joueur() {
     }
 
     public void ajouterbateau(Bateau b) {
@@ -22,9 +26,9 @@ public class Joueur {
 
     }
 
-    public void coup(int x, int y) {
-        for(int i = 0; i < this.bateaux.size(); ++i) {
-            ((Bateau)this.bateaux.get(i)).touche(x, y);
+    public void tir(int x, int y, Joueur j) {
+        for(int i = 0; i < j.bateaux.size(); ++i) {
+            ((Bateau)j.bateaux.get(i)).touche(x, y);
         }
 
     }
@@ -38,4 +42,5 @@ public class Joueur {
 
         return res;
     }
+    
 }

@@ -1,5 +1,7 @@
 package com.company;
 
+import jdk.jfr.Unsigned;
+
 public class Element {
     private int abcisse;
     private int ordonnee;
@@ -27,11 +29,20 @@ public class Element {
     }
 
     public void avancer(int i, int j) {
-        if (i >= -2 && i <= 2 && j >= -2 && j <= 2) {
-            this.abcisse += i;
-            this.ordonnee += j;
-        }
+    	int dx = 0, dy=0, x=0, y=0;
+    	if(abcisse-i<=2 && abcisse-i>=-2 && ordonnee-j<=2 && ordonnee-j>=-2) {
+    		dx = abcisse-i;
+    		dy = ordonnee-j;
+    	}
+    	if(dx<0)
+    		x =dx*(-1);
+    	if(dy<0)
+    		y=dy*(-1);
 
+    	if(x+y<=2) {
+    		this.abcisse -= dx;
+            this.ordonnee -= dy;
+    	}
     }
 
     public boolean isDetruit() {

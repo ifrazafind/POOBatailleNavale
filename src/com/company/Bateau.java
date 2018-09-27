@@ -21,21 +21,18 @@ public class Bateau {
                 this.element[i] = new Element(x, y + i);
             }
         }
-
     }
 
     public void avancer(int x, int y) {
         for (int i = 0; i < this.element.length; ++i) {
             this.element[i].avancer(x, y);
         }
-
     }
 
     public void touche(int x, int y) {
         for (int i = 0; i < this.element.length; ++i) {
             this.element[i].touche(x, y);
         }
-
     }
 
     public boolean estdetruit() {
@@ -44,12 +41,15 @@ public class Bateau {
         for (int i = 0; i < this.element.length && res; ++i) {
             res = res && this.element[i].isDetruit();
         }
-
         return res;
     }
 
-    public String toString() {
-        String s = "(" + this.element[0].getabcisse() + "," + this.element[0].getordonnee() + ")";
+    public String toString() {    	
+    	char hor = 'h';
+    	if(!horizontal) {
+    		hor= 'v';
+    	}
+        String s = "(" + this.element[0].getabcisse() + "," + this.element[0].getordonnee() + "," + hor +")";
 
         for (int i = 0; i < this.element.length; ++i) {
             s = s + this.element[i].toString();
