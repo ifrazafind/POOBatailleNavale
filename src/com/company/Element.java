@@ -1,6 +1,5 @@
 package com.company;
 
-import jdk.jfr.Unsigned;
 
 public class Element {
     private int abcisse;
@@ -31,28 +30,28 @@ public class Element {
 		this.ordonnee = ordonnee;
 	}
 
-    public void touche(int i, int j) {
-        if (this.abcisse == i && this.ordonnee == j && !this.detruit) {
+    public boolean touche(int i, int j) {
+        if (this.abcisse == j && this.ordonnee == i && !this.detruit) {
             this.detruit = true;
+            return true;
         }
+        return false;
 
     }
 
-    public void avancer(int i, int j) {
-    	int dx = 0, dy=0, x=0, y=0;
-    	if(abcisse-i<=2 && abcisse-i>=-2 && ordonnee-j<=2 && ordonnee-j>=-2) {
-    		dx = abcisse-i;
-    		dy = ordonnee-j;
-    	}
+    public boolean avancer(int dx, int dy) {
+    	int x=0, y=0;
     	if(dx<0)
     		x =dx*(-1);
     	if(dy<0)
     		y=dy*(-1);
 
     	if(x+y<=2) {
-    		this.abcisse -= dx;
-            this.ordonnee -= dy;
+    		this.abcisse += dy;
+            this.ordonnee += dx;
+            return true;
     	}
+    	return false;
     }
 
     public boolean isDetruit() {
@@ -61,7 +60,7 @@ public class Element {
 
     public String toString() {
         String s = "";
-        s="["+this.abcisse+"/"+this.ordonnee+"]";
+        s="["+this.ordonnee+"/"+this.abcisse+"]";
         if (!this.detruit) {
             s += "O";
         } else if (this.detruit) {

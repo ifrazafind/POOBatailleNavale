@@ -4,7 +4,11 @@ public class Bateau {
     private boolean horizontal;
     private boolean tirHorizontal;
     private Element[] element;
-    private int portee;
+    public Element[] getElement() {
+		return element;
+	}
+
+	private int portee;
     protected int nb;
     private String initial ;
 
@@ -16,25 +20,49 @@ public class Bateau {
        
         if (this.horizontal) {
             for (int i = 0; i < taille; ++i) {
-                this.element[i] = new Element(x + i, y);
+                this.element[i] = new Element(y + i, x);
             }
         } else {
             for (int i = 0; i < taille; ++i) {
-                this.element[i] = new Element(x, y + i);
+                this.element[i] = new Element(y, x + i);
             }
         }
     }
 
-    public void avancer(int x, int y) {
-        for (int i = 0; i < this.element.length; ++i) {
-            this.element[i].avancer(x, y);
+    public boolean avancer(int x, int y) {
+    	int dx, dy;
+    	if(x>this.element[0].getordonnee()) {
+    		dx= this.element[0].getordonnee()+x;
+    	}else {
+    		dx = this.element[0].getordonnee()-x;
+    	}
+    	
+    	if(x>this.element[0].getabcisse()) {
+    		dy= this.element[0].getabcisse()+y;
+    	}else {
+    		dy = this.element[0].getabcisse()-y;
+    	}
+    	
+    	int compte = 0;
+        for(int i = 0; i < this.element.length; ++i) {
+            boolean test = false;
+        	 test = this.element[i].avancer(dx, dy);
+        	 if(test)
+        		 compte+=1;
         }
+        if(compte==this.element.length)
+        	return true;
+        return false;
     }
 
-    public void touche(int x, int y) {
+    public boolean touche(int x, int y) {
+    	boolean touche= false;
         for (int i = 0; i < this.element.length; ++i) {
-            this.element[i].touche(x, y);
+        	touche = this.element[i].touche(x, y);
+        	if(touche)
+        		return touche;
         }
+        return touche;
     }
 
     public boolean estdetruit() {

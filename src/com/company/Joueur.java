@@ -20,19 +20,29 @@ public class Joueur {
     public int lignebateau() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Veuillez saisir une ligne :");
-        String str = sc.next();
-        int result = Integer.parseInt(str);
-        System.out.println("Vous avez saisi : " + str);
-        return result;
+        try {
+        	int result = sc.nextInt();
+            System.out.println("Vous avez saisi : " + result);
+            return result;
+		} catch (Exception e) {
+			System.out.println("entier entre 0 et 9 seulement");
+			this.lignebateau();
+		} 
+		return 0;
     }
 
     public int colonebateau() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Veuillez saisir une colone :");
-        String str = sc.next();
-        int result = Integer.parseInt(str);
-        System.out.println("Vous avez saisi : " + str);
-        return result;
+        try {
+        	 int result = sc.nextInt();
+             System.out.println("Vous avez saisi : " + result);
+             return result;
+		} catch (Exception e) {
+			System.out.println("entier entre 0 et 9 seulement");
+			this.colonebateau();
+		}  
+        return 0;
     }
 
     public boolean orienterbateau() {
@@ -63,8 +73,20 @@ public class Joueur {
         }
 
     }
+    
+    public void modifiergrille(Bateau b) {
+    	for(int i = 0; i < grille.length; ++i) {
+    		for(int j = 0; j < grille[i].length; ++j) {
+    			if (grille[i][j] == b.getInit()) {
+    				grille[i][j] = null;
+    			}
+    			for(int k = 0; k<b.getElement().length;k++) {
+    				grille[b.getElement()[k].getordonnee()][b.getElement()[k].getabcisse()] = b.getInit();
+    			}
+    		}
+    	}
+    }
 
-   
     public void ajouterbateau(Bateau b) {
         if (!this.bateaux.contains(b)) {
             while (b.getX() + b.getTaille()*(b.getOrientation() ? 0 : 1) > 10 || b.getX() < 0) {
@@ -123,6 +145,7 @@ public class Joueur {
         }
 
     }
+    
     public void enleverbateau(Bateau b) {
         if (this.bateaux.contains(b)) {
             this.bateaux.remove(b);
@@ -130,11 +153,42 @@ public class Joueur {
 
     }
 
-    public void tir(int x, int y, Joueur j) {
-        for(int i = 0; i < j.bateaux.size(); ++i) {
-            ((Bateau)j.bateaux.get(i)).touche(x, y);
+    public Bateau choixbateau(){
+        boolean test = false;
+        Bateau selec=null;
+        System.out.println("Vos bateaux :");
+        for(int i =0;i<bateaux.size();i++){
+            System.out.println(bateaux.get(i).toString().split("\\(")[0] +" : "+bateaux.get(i).getInit());
+
         }
 
+        while(test==false){
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Quel bateau choisir (donner initiale):");
+            String choix = sc.next();
+
+            for(int i =0;i<bateaux.size();i++){
+                if (bateaux.get(i).getInit().equals(choix)){
+                    selec = bateaux.get(i);
+                    test=true;
+                }
+            }
+        }
+        return selec;
+    }
+    
+    public boolean tir(int x, int y, Joueur j) {
+    	boolean touche=false;
+        for(int i = 0; i < j.bateaux.size(); ++i) {
+            touche = ((Bateau)j.bateaux.get(i)).touche(x, y);
+        }
+        return touche;
+    }
+    
+    public boolean aPerdu() {
+    	if(bateaux.isEmpty())
+    		return true;
+    	return false;
     }
 
     public String toString() {
