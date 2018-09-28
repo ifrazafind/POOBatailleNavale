@@ -3,7 +3,9 @@ package com.company;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-
+// Guillaume CADAPEAUD
+// Mickael Revillon
+// Ira Razafindrahaingo
 
 public class Game {
 	
@@ -14,7 +16,7 @@ public class Game {
 		}
 	}
 	
-	//
+	
 	public static void setup(Joueur j,int nb) {
 		System.out.print("Joueur "+nb+"\n");
 
